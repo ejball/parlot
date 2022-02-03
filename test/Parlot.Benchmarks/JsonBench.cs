@@ -7,6 +7,7 @@ using Parlot.Tests.Json;
 using Parlot.Benchmarks.SpracheParsers;
 using Parlot.Benchmarks.SuperpowerParsers;
 using Parlot.Benchmarks.PidginParsers;
+using Parlot.Benchmarks.FaithlifeParsers;
 using Parlot.Fluent;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
@@ -74,6 +75,12 @@ namespace Parlot.Benchmarks
             return SuperpowerJsonParser.Parse(_bigJson);
         }
 
+        [Benchmark, BenchmarkCategory("Big")]
+        public IJson BigJson_Faithlife()
+        {
+            return FaithlifeJsonParser.Parse(_bigJson);
+        }
+
         [Benchmark(Baseline = true), BenchmarkCategory("Long")]
         public IJson LongJson_ParlotCompiled()
         {
@@ -108,6 +115,12 @@ namespace Parlot.Benchmarks
         public IJson LongJson_Superpower()
         {
             return SuperpowerJsonParser.Parse(_longJson);
+        }
+
+        [Benchmark, BenchmarkCategory("Long")]
+        public IJson LongJson_Faithlife()
+        {
+            return FaithlifeJsonParser.Parse(_longJson);
         }
 
         [Benchmark(Baseline = true), BenchmarkCategory("Deep")]
@@ -147,6 +160,12 @@ namespace Parlot.Benchmarks
         //    return SuperpowerJsonParser.Parse(_deepJson);
         //}
 
+        [Benchmark, BenchmarkCategory("Deep")]
+        public IJson DeepJson_Faithlife()
+        {
+            return FaithlifeJsonParser.Parse(_deepJson);
+        }
+
         [Benchmark(Baseline = true), BenchmarkCategory("Wide")]
         public IJson WideJson_ParlotCompiled()
         {
@@ -181,6 +200,12 @@ namespace Parlot.Benchmarks
         public IJson WideJson_Superpower()
         {
             return SuperpowerJsonParser.Parse(_wideJson);
+        }
+
+        [Benchmark, BenchmarkCategory("Wide")]
+        public IJson WideJson_Faithlife()
+        {
+            return FaithlifeJsonParser.Parse(_wideJson);
         }
 
         private static IJson BuildJson(int length, int depth, int width)
